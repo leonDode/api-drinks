@@ -1,14 +1,6 @@
-export class UpdateDrinkDTO{
+import { PartialType } from '@nestjs/mapped-types'
+import { CreateDrinkDTO } from './create_drink.dto'
 
-    readonly id?: Number
-
-    readonly nome?: String
-
-    readonly descricao?: string
-
-    readonly tags?: string[]
-
-    readonly ingredientes?: string[]
-
-    readonly salvo?: boolean
+export class UpdateCourseDTO extends PartialType(CreateDrinkDTO) {
+    
 }
