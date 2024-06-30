@@ -1,46 +1,58 @@
 import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, Res } from '@nestjs/common';
 import { DrinksService } from './drinks.service';
+import { CreateDrinkDTO } from './dto/create_drink.dto';
+import { UpdateDrinkDTO } from './dto/update_drink.dto';
+
 
 @Controller('drinks')
 export class DrinksController {
 
 
-constructor(private readonly deinkService:DrinksService){
+constructor(private readonly drinkService:DrinksService){
 }
 
 
   @Get()
-    findAll(@Res() response){
-        return response.status(200).json({ message: "opa"})
+    findAll(){
+        return this.drinkService.findAll()
+
+    }
+
+
+    @Get(':id')
+    findOne(@Param('id') id:number){
+        return this.drinkService.findOne(id)
 
     }
 
 
     @Get(':name')
-    findByName(@Param('name') name:string){
-        return name
+    findByName(@Param('name') nome:string){
+        return this.drinkService.findByName(nome)
 
     }
 
 
     @Post()
-    createDrink(@Body() body){
-        return body
+    createDrink(@Body() createDrinkDTO:CreateDrinkDTO){
+        return this.drinkService.create(createDrinkDTO)
 
     }
 
     @Put(':id')
-     updateDrinks(@Param('id') id:string){
+     updateDrinks(@Param('id') id:number, @Body() updateDrinkDTO:UpdateDrinkDTO){
 
-        return
+        return this.drinkService.update(+id,updateDrinkDTO)
      }
 
 
 
      @HttpCode(204)
      @Delete(':id')
-     deleteDrinks(@Param('id') id:string){
+     deleteDrinks(@Param('id') id:number){
 
+
+        return this.drinkService.remove(id)
      }
 
 }
