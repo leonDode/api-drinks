@@ -30,7 +30,9 @@ export class DrinksService {
 
 
     create(createDrinkDTO:any){
-        this.drinks.push
+        this.drinks.push(createDrinkDTO)
+
+        return createDrinkDTO
     }
 
 

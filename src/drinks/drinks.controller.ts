@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, Res } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put } from '@nestjs/common';
 import { DrinksService } from './drinks.service';
 import { CreateDrinkDTO } from './dto/create_drink.dto';
 import { UpdateDrinkDTO } from './dto/update_drink.dto';
@@ -42,7 +42,7 @@ constructor(private readonly drinkService:DrinksService){
     @Put(':id')
      updateDrinks(@Param('id') id:number, @Body() updateDrinkDTO:UpdateDrinkDTO){
 
-        return this.drinkService.update(+id,updateDrinkDTO)
+        return this.drinkService.update(id,updateDrinkDTO)
      }
 
 
