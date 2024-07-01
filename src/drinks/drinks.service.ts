@@ -2,42 +2,40 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { Drink } from './entities/drinks.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Tag } from './entities/tags.entity';
+import { Ingrediente } from './entities/ingredientes.entity';
 
 @Injectable()
 export class DrinksService {
 
     constructor(
         @InjectRepository(Drink)
-        private readonly drinkRepository: Repository<Drink>
-    ){
+        private readonly drinkRepository: Repository<Drink>,
 
-    }
+        @InjectRepository(Tag)
+        private readonly tagRepository: Repository<Tag>,
 
-    private drinks: Drink[] =[
-        {
-            id: 1,
-            nome: 'mojito',
-            descricao: 'afakonajbcasjc asbcaspibcaps',
-            tags:['doce','refrescante'],
-            ingredientes: ['açucar','hortela','rum'],
-            salvo: true
+        @InjectRepository(Ingrediente)
+        private readonly ingredienteRepository: Repository<Ingrediente>
+    ){}
 
-        },
-    ]
+   
+    
 
+    
   async  findAll(){
         return this.drinkRepository.find()
     }
 
 
     async  findByName(nome:string){
-        const drink =  await this.drinkRepository.findOne({
+        const drink =  await this.drinkRepository.find({
             where: {nome},
           })
           if(!drink){
             throw new NotFoundException(`o drink  ${nome} nao existe`)
           }
-          return drink
+         return drink
     }
 
 
@@ -85,6 +83,13 @@ export class DrinksService {
        
     }
 
+    private async preloadTagByName(nome: string): Promise<Tag> {
+      const tag = await this.tagRepository.findOne({ where: { nome } })
+      if (tag) {
+        return tag
+      }
+      return this.tagRepository.create({ nome })
+    }
 
 
 

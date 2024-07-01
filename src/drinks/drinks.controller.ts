@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, NotFoundException, Param, Post, Put } from '@nestjs/common';
 import { DrinksService } from './drinks.service';
 import { CreateDrinkDTO } from './dto/create_drink.dto';
 import { UpdateDrinkDTO } from './dto/update_drink.dto';
@@ -26,9 +26,10 @@ constructor(private readonly drinkService:DrinksService){
     }
 
 
-    @Get(':name')
+    @Get('/pesqNome/:name')
     findByName(@Param('name') nome:string){
         return this.drinkService.findByName(nome)
+
 
     }
 
