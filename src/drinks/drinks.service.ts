@@ -1,9 +1,19 @@
-import { Injectable } from '@nestjs/common';
-import { Drinks } from './drinks.entity';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { Drink } from './entities/drinks.entity';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class DrinksService {
-    private drinks: Drinks[] =[
+
+    constructor(
+        @InjectRepository(Drink)
+        private readonly drinkRepository: Repository<Drink>
+    ){
+
+    }
+
+    private drinks: Drink[] =[
         {
             id: 1,
             nome: 'mojito',
@@ -15,53 +25,63 @@ export class DrinksService {
         },
     ]
 
-    findAll(){
-        return this.drinks
+  async  findAll(){
+        return this.drinkRepository.find()
     }
 
 
-    findByName(nome:string){
-        return this.drinks.find(drinks => drinks.nome === nome)
-    }
-
-    findOne(id:number){
-        return this.drinks.find(drinks => drinks.id === id)
-    }
-
-
-    create(createDrinkDTO:any){
-        this.drinks.push(createDrinkDTO)
-
-        return createDrinkDTO
+    async  findByName(nome:string){
+        const drink =  await this.drinkRepository.findOne({
+            where: {nome},
+          })
+          if(!drink){
+            throw new NotFoundException(`o drink  ${nome} nao existe`)
+          }
+          return drink
     }
 
 
-    update(id:number ,updateDrinkDTO:any){
-
-        const existDrink = this.findOne(id)
-
-        if(existDrink){
-            const index = this.drinks.findIndex(drink => drink.id === id)
-
-            this.drinks[index]={
-                id,
-                ...updateDrinkDTO
-
-            }
-        }
-       
+    async   findOne(id:number){
+      const drink =  await this.drinkRepository.findOne({
+        where: {id},
+      })
+      if(!drink){
+        throw new NotFoundException(`o drink com ID ${id} nao existe`)
+      }
+      return drink
     }
 
 
-    remove(id:number ){
+    async   create(createDrinkDTO:any){
+        const drink = this.drinkRepository.create(createDrinkDTO)
+        return this.drinkRepository.save(drink)
 
-        const index = this.drinks.findIndex(drink => drink.id === id)
-
-        if(index >= 0){
-            this.drinks.splice(index,1)
-        }
         
-        
+    }
+
+
+    async  update(id:number ,updateDrinkDTO:any){
+
+      const drink = await this.drinkRepository.preload({
+        ...updateDrinkDTO,
+        id
+      })
+       if(!drink){
+        throw new NotFoundException(`o drink com ID ${id} nao existe`)
+       }
+       return this.drinkRepository.save(drink)
+    }
+
+
+    async   remove(id:number ){
+        const drink = await this.drinkRepository.findOne({
+           where: {id}
+          })
+          if(!drink){
+            throw new NotFoundException(`o drink com ID ${id} nao existe`)
+           }
+           return this.drinkRepository.remove(drink)
+
        
     }
 

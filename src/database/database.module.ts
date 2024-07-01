@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { Drink } from 'src/drinks/entities/drinks.entity';
 import { DataSourceOptions } from 'typeorm';
 
 export const dataSourceOptions: DataSourceOptions = {
@@ -9,7 +10,7 @@ export const dataSourceOptions: DataSourceOptions = {
         username: 'postgres',
         password: 'dode2511',
         database: 'drinkHub',
-        entities: [],
+        entities: [Drink],
         synchronize: true
 }
 
