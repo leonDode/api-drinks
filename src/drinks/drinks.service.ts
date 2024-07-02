@@ -27,9 +27,11 @@ export class DrinksService {
     
   async  findAll(){
         return this.drinkRepository.find({
-          relations:['tags','ingredientes']
+          relations:['tags','ingredientes'],
         })
     }
+     
+  
 
 
     async  findByName(nome:string){
