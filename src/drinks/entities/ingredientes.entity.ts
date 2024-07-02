@@ -10,8 +10,6 @@ export class Ingrediente {
     @Column()
     nome: String
 
-    @Column()
-    qtd: Number
 
     @ManyToMany(()=> Drink,drink=>drink.tags)
     drinks: Drink[]

@@ -20,4 +20,7 @@ export class CreateDrinkDTO{
     
     @IsBoolean()
     readonly salvo: boolean
+
+    @IsString()
+    readonly img: String
 }

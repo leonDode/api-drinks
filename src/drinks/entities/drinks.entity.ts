@@ -14,6 +14,10 @@ export class Drink {
     @Column()
     descricao: string
 
+    @Column()
+    img: String
+
+
 
     @JoinTable()
     @ManyToMany(()=> Tag,tag =>tag.drinks,{
