@@ -9,6 +9,9 @@ export class Tag {
 
     @Column()
     nome: String
+    
+    @Column({nullable:true})
+    color: String
 
     @ManyToMany(()=> Drink,drink=>drink.tags)
     drinks: Drink[]
