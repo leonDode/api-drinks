@@ -7,11 +7,11 @@ import { DataSourceOptions } from 'typeorm';
 
 export const dataSourceOptions: DataSourceOptions = {
         type: 'postgres',
-        host: 'localhost',
-        port: 5432,
+        host: 'viaduct.proxy.rlwy.net',
+        port: 27696,
         username: 'postgres',
-        password: 'dode2511',
-        database: 'drinkHub',
+        password: 'rykdmIMfaVgDDPrYpeNYOSCXNxCDVCLf',
+        database: 'railway',
         entities: [Drink,Tag,Ingrediente],
         synchronize: true
 }
