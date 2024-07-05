@@ -18,6 +18,19 @@ constructor(private readonly drinkService:DrinksService){
 
     }
 
+    @Get('/ingredientes')
+    findAllIngrediente(){
+        return this.drinkService.findAllIngredientes()
+
+    }
+
+
+    @Get('/ingredientes/:categoria')
+    findIngredienteByCategoria(@Param('categoria') categoria:string){
+        return this.drinkService.findIngredienteByCategoria(categoria)
+
+    }
+
     
 
 

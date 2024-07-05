@@ -30,7 +30,22 @@ export class DrinksService {
           relations:['tags','ingredientes'],
         })
     }
-     
+
+
+    async  findAllIngredientes(){
+      return this.ingredienteRepository.find()
+  }
+
+   
+  async  findIngredienteByCategoria(categoria:string){
+    const ingrediente =  await this.ingredienteRepository.find({
+        where: {categoria}
+      })
+      if(!ingrediente){
+        throw new NotFoundException(`o drink  ${categoria} nao existe`)
+      }
+     return ingrediente
+} 
   
 
 

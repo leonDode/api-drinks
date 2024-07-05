@@ -13,6 +13,10 @@ export class Ingrediente {
     @Column({nullable:true})
     img_ingrediente: String
 
+    @Column()
+    categoria: String
+
+
 
     @ManyToMany(()=> Drink,drink=>drink.tags)
     drinks: Drink[]
