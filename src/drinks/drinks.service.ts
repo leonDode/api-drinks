@@ -25,13 +25,20 @@ export class DrinksService {
     
 
     
-  async  findAll(){
-        return this.drinkRepository.find({
-          relations:['tags','ingredientes'],
-        })
-    }
+ 
 
 
+//Tags
+    async  findAllTags(){
+      return this.tagRepository.find()
+  }
+
+
+
+
+
+
+//ingredientes
     async  findAllIngredientes(){
       return this.ingredienteRepository.find()
   }
@@ -47,7 +54,12 @@ export class DrinksService {
      return ingrediente
 } 
   
-
+//drinks  
+    async  findAll(){
+      return this.drinkRepository.find({
+         relations:['tags','ingredientes'],
+        })
+      }
 
     async  findByName(nome:string){
         const drink =  await this.drinkRepository.find({
@@ -59,6 +71,18 @@ export class DrinksService {
           }
          return drink
     }
+ async   findTag(nome:string){
+      const drink =  await this.drinkRepository.find({
+        where: {tags:{nome}},
+        relations:['tags','ingredientes']
+      })
+      if(!drink){
+        throw new NotFoundException(`o drink com ID ${nome} nao existe`)
+      }
+      return drink
+    }
+
+    
 
 
     async   findOne(id:number){

@@ -13,6 +13,10 @@ export class Tag {
     @Column({nullable:true})
     color: String
 
+
+    @Column({nullable:true})
+    imgTag: String
+
     @ManyToMany(()=> Drink,drink=>drink.tags)
     drinks: Drink[]
 }
