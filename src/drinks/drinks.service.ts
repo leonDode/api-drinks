@@ -77,7 +77,19 @@ export class DrinksService {
         relations:['tags','ingredientes']
       })
       if(!drink){
-        throw new NotFoundException(`o drink com ID ${nome} nao existe`)
+        throw new NotFoundException(`nao encontrado`)
+      }
+      return drink
+    }
+
+
+    async   findDrinkByIngrediente(nome:string){
+      const drink =  await this.drinkRepository.find({
+        where: {ingredientes:{nome}},
+        relations:['tags','ingredientes']
+      })
+      if(!drink){
+        throw new NotFoundException(`nao encontrado`)
       }
       return drink
     }

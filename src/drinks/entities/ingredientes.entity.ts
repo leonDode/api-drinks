@@ -13,7 +13,7 @@ export class Ingrediente {
     @Column({nullable:true})
     img_ingrediente: String
 
-    @Column()
+    @Column({nullable:true})
     categoria: String
 
 

@@ -37,9 +37,15 @@ constructor(private readonly drinkService:DrinksService){
 
     }
 
-    @Get('/teste/:nome')
-    teste(@Param('nome') nome:string){
+    @Get('/tags/:nome')
+     findTag(@Param('nome') nome:string){
         return this.drinkService.findTag(nome)
+
+    }
+
+    @Get('/componentes/:nome')
+    findDrinkByIngrediente(@Param('nome') nome:string){
+        return this.drinkService.findDrinkByIngrediente(nome)
 
     }
 
