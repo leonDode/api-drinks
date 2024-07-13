@@ -15,6 +15,10 @@ export class Drink {
     descricao: string
 
     @Column()
+    instrucoes: string
+
+
+    @Column()
     img: String
 
 
