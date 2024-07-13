@@ -11,7 +11,7 @@ export class CreateDrinkDTO{
 
     @IsString()
     readonly descricao: string
-    
+
     @IsString()
     readonly instrucoes: string
 

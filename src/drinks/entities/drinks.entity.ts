@@ -14,7 +14,7 @@ export class Drink {
     @Column()
     descricao: string
 
-    @Column()
+    @Column({nullable:true})
     instrucoes: string
 
 
