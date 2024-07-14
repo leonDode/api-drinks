@@ -108,6 +108,18 @@ export class DrinksService {
       return drink
     }
 
+    
+    async   findSavedDrink(){
+      const drink =  await this.drinkRepository.find({
+        where: {salvo: true},
+        relations:['tags','ingredientes']
+      })
+      if(!drink){
+        throw new NotFoundException(`o drink com  nao existe`)
+      }
+      return drink
+    }
+
 
     async   create(createDrinkDTO:CreateDrinkDTO){
       const tags = await Promise.all(

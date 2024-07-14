@@ -42,6 +42,11 @@ constructor(private readonly drinkService:DrinksService){
         return this.drinkService.findTag(nome)
 
     }
+    @Get('/salvos')
+     findSavedDrink(){
+        return this.drinkService.findSavedDrink()
+
+    }
 
     @Get('/componentes/:nome')
     findDrinkByIngrediente(@Param('nome') nome:string){
