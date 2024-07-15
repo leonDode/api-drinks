@@ -25,6 +25,12 @@ constructor(private readonly drinkService:DrinksService){
 
     }
 
+    @Get('/mybar/:tags')
+    findMyBarTags(@Param('tags') nome:string){
+        return this.drinkService.findMyBarTags(nome)
+
+    }
+
     @Get('/ingredientes')
     findAllIngrediente(){
         return this.drinkService.findAllIngredientes()
