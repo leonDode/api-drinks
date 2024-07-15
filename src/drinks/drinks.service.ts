@@ -122,6 +122,26 @@ export class DrinksService {
     }
 
 
+
+
+     
+    async findMyBar() {
+      const drinks = await this.drinkRepository.find({
+        relations: ['tags', 'ingredientes']
+      });
+    
+      const filteredDrinks = drinks.filter(drink =>
+        drink.ingredientes.some(ingrediente => ingrediente.salvo === true)
+      );
+    
+      if (filteredDrinks.length === 0) {
+        throw new NotFoundException('Nenhum drink com ingredientes salvos foi encontrado');
+      }
+      
+      return filteredDrinks;
+    }
+
+
     async   create(createDrinkDTO:CreateDrinkDTO){
       const tags = await Promise.all(
         createDrinkDTO.tags.map(nome=> this.preloadTagByName(nome)),

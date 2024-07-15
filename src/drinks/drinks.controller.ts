@@ -19,6 +19,11 @@ constructor(private readonly drinkService:DrinksService){
         return this.drinkService.findAll()
 
     }
+    @Get('/mybar')
+    findMyBar(){
+        return this.drinkService.findMyBar()
+
+    }
 
     @Get('/ingredientes')
     findAllIngrediente(){
