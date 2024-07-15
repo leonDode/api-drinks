@@ -21,7 +21,6 @@ export class Tag {
     drinks: Drink[]
 
     
-   @Column({default: false})
-   salvo: boolean
+
 }
 
