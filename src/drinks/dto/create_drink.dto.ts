@@ -20,6 +20,21 @@ export class CreateDrinkDTO{
     
     @IsString({ each: true })
     readonly ingredientes: string[]
+
+    @IsString()
+    readonly medidas0: string
+
+    @IsString()
+    readonly medidas1: string
+
+    @IsString()
+    readonly medidas2: string
+
+    @IsString()
+    readonly medidas3: string
+
+    @IsString()
+    readonly medidas4: string
     
     @IsBoolean()
     readonly salvo: boolean

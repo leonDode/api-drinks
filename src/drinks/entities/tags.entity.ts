@@ -19,5 +19,9 @@ export class Tag {
 
     @ManyToMany(()=> Drink,drink=>drink.tags)
     drinks: Drink[]
+
+    
+   @Column({default: false})
+   salvo: boolean
 }
 

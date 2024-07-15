@@ -37,6 +37,23 @@ export class Drink {
     ingredientes: Ingrediente[]
 
 
+    @Column({ nullable: true })
+    medidas0: string
+
+    @Column({ nullable: true })
+    medidas1: string
+
+    @Column({ nullable: true })
+    medidas2: string
+
+    @Column({ nullable: true })
+    medidas3: string
+
+    @Column({ nullable: true })
+    medidas4: string
+
+
+
 
 
    @Column({default: false})
