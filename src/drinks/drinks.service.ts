@@ -6,6 +6,7 @@ import { Tag } from './entities/tags.entity';
 import { Ingrediente } from './entities/ingredientes.entity';
 import { CreateDrinkDTO } from './dto/create_drink.dto';
 import { UpdateDrinkDTO } from './dto/update_drink.dto';
+import { UpdateIngredienteDTO } from './dto/update_ingrediente_dto';
 
 @Injectable()
 export class DrinksService {
@@ -162,6 +163,28 @@ export class DrinksService {
        }
        return this.drinkRepository.save(drink)
     }
+
+
+    
+    async  updateIngrediente(id:number ,updateIngrediente:UpdateIngredienteDTO){
+
+      
+
+     
+
+
+      const ingrediente = await this.ingredienteRepository.preload({
+        ...updateIngrediente,
+        id,
+      })
+       if(!ingrediente){
+        throw new NotFoundException(`o ingrediente com ID ${id} nao existe`)
+       }
+       return this.ingredienteRepository.save(ingrediente)
+    }
+    
+
+
 
 
     async   remove(id:number ){

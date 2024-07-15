@@ -2,6 +2,8 @@ import { Body, Controller, Delete, Get, HttpCode, NotFoundException, Param, Post
 import { DrinksService } from './drinks.service';
 import { CreateDrinkDTO } from './dto/create_drink.dto';
 import { UpdateDrinkDTO } from './dto/update_drink.dto';
+import { CreateIngredienteDTO } from './dto/create_ingrediente_dto';
+import { UpdateIngredienteDTO } from './dto/update_ingrediente_dto';
 
 
 @Controller('drinks')
@@ -82,6 +84,17 @@ constructor(private readonly drinkService:DrinksService){
 
         return this.drinkService.update(id,updateDrinkDTO)
      }
+
+
+     @Put('/ingredientes/:id')
+     updateIngredientes(@Param('id') id:number, @Body() updateingredienteDTO:UpdateIngredienteDTO){
+
+        return this.drinkService.updateIngrediente(id,updateingredienteDTO)
+     }
+
+
+
+   
 
 
 
