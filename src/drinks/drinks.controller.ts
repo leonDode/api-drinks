@@ -15,7 +15,7 @@ constructor(private readonly drinkService:DrinksService){
 }
 
 // find all
-  @ApiTags("drinks")
+//  @ApiTags("drinks")
   @Get()
     findAll(){
         return this.drinkService.findAll()
@@ -23,7 +23,7 @@ constructor(private readonly drinkService:DrinksService){
     }
 
 // create
-    @ApiTags("drinks")
+ //   @ApiTags("drinks")
     @Post()
     createDrink(@Body() createDrinkDTO:CreateDrinkDTO){
         return this.drinkService.create(createDrinkDTO)
@@ -31,7 +31,7 @@ constructor(private readonly drinkService:DrinksService){
     }
 
 // update
-    @ApiTags("drinks")
+ //   @ApiTags("drinks")
     @Put(':id')
      updateDrinks(@Param('id') id:number, @Body() updateDrinkDTO:UpdateDrinkDTO){
 
@@ -40,7 +40,7 @@ constructor(private readonly drinkService:DrinksService){
 
 
  // delete
-    @ApiTags("drinks")
+//    @ApiTags("drinks")
     @HttpCode(204)
     @Delete(':id')
     deleteDrinks(@Param('id') id:number){
@@ -50,14 +50,14 @@ constructor(private readonly drinkService:DrinksService){
     }
 
 // find {id}
-    @ApiTags("drinks")
+//    @ApiTags("drinks")
     @Get(':id')
     findOne(@Param('id') id:number){
         return this.drinkService.findOne(id)
 
     }
 // find{nome}
-    @ApiTags("drinks")
+ //   @ApiTags("drinks")
     @Get('/pesqNome/:name')
     findByName(@Param('name') nome:string){
         return this.drinkService.findByName(nome)
@@ -66,7 +66,7 @@ constructor(private readonly drinkService:DrinksService){
     }
 
 // frind drink {ingrediente}
-    @ApiTags("drinks")
+//    @ApiTags("drinks")
     @Get('/componentes/:nome')
     findDrinkByIngrediente(@Param('nome') nome:string){
         return this.drinkService.findDrinkByIngrediente(nome)
@@ -74,7 +74,7 @@ constructor(private readonly drinkService:DrinksService){
     }
 
 // list drinks salvos
-    @ApiTags("drinks")
+//    @ApiTags("drinks")
     @Get('/salvos')
      findSavedDrink(){
         return this.drinkService.findSavedDrink()
@@ -86,7 +86,7 @@ constructor(private readonly drinkService:DrinksService){
 
 
 // list MyBar
-    @ApiTags("drinks")
+ //   @ApiTags("drinks")
     @Get('/mybar')
     findMyBar(){
         return this.drinkService.findMyBar()
@@ -95,7 +95,7 @@ constructor(private readonly drinkService:DrinksService){
 
     
 // find MyBar {tag}
-    @ApiTags("drinks")
+//   @ApiTags("drinks")
     @Get('/mybar/:tags')
     findMyBarTags(@Param('tags') nome:string){
         return this.drinkService.findMyBarTags(nome)
@@ -104,7 +104,7 @@ constructor(private readonly drinkService:DrinksService){
 
     
 // find all ingredientes 
-    @ApiTags("ingredientes")
+ //   @ApiTags("ingredientes")
     @Get('/ingredientes')
     findAllIngrediente(){
         return this.drinkService.findAllIngredientes()
@@ -113,14 +113,14 @@ constructor(private readonly drinkService:DrinksService){
 
 
 // find ingrediente {categoria}
-    @ApiTags("ingredientes")
+//    @ApiTags("ingredientes")
     @Get('/ingredientes/:categoria')
     findIngredienteByCategoria(@Param('categoria') categoria:string){
         return this.drinkService.findIngredienteByCategoria(categoria)
 
     }
 //update ingrediente
-    @ApiTags("ingredientes")
+ //   @ApiTags("ingredientes")
     @Put('/ingredientes/:id')
     updateIngredientes(@Param('id') id:number, @Body() updateingredienteDTO:UpdateIngredienteDTO){
 
@@ -128,7 +128,7 @@ constructor(private readonly drinkService:DrinksService){
     }
 
 //find all tags
-    @ApiTags("tags")
+ //   @ApiTags("tags")
     @Get('/tags')
     findAllTags(){
         return this.drinkService.findAllTags()
@@ -136,7 +136,7 @@ constructor(private readonly drinkService:DrinksService){
     }
 
 // find tags {nome}
-    @ApiTags("tags")
+//  @ApiTags("tags")
     @Get('/tags/:nome')
      findTag(@Param('nome') nome:string){
         return this.drinkService.findTag(nome)
