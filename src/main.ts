@@ -5,6 +5,7 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  
     app.enableCors({
        origin: 'https://api-drinks-git-main-leondodes-projects.vercel.app',
       methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
@@ -20,7 +21,10 @@ async function bootstrap() {
     .addTag('tags')
     .build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+  SwaggerModule.setup('api', app, document, {
+    customSiteTitle: 'DrinkHub API Documentation',
+    customCssUrl: '/api/swagger-ui.css',
+  });
 
   app.useGlobalPipes(new ValidationPipe({
     whitelist:true,
