@@ -1,32 +1,19 @@
 {
-    "version":2,
+    "version": 2,
     "builds": [
-        {
-        "src":"src/main.ts",
-        "use":"@vercel/node"
-        }
+      {
+        "src": "src/main.ts",
+        "use": "@vercel/node"
+      }
     ],
     "rewrites": [
-    {
-      "source": "/api/swagger-ui.css",
-      "destination": "/node_modules/swagger-ui-dist/swagger-ui.css"
-    },
-    {
-      "source": "/api/swagger-ui-bundle.js",
-      "destination": "/node_modules/swagger-ui-dist/swagger-ui-bundle.js"
-    },
-    {
-      "source": "/api/swagger-ui-standalone-preset.js",
-      "destination": "/node_modules/swagger-ui-dist/swagger-ui-standalone-preset.js"
-    },
-    {
-      "source": "/api/(.*)",
-      "destination": "/api/$1"
-    },
-    {
-      "source": "(.*)",
-      "destination": "/src/main.ts"
-    }
-  ]
-
-}
+      {
+        "source": "/api/(.*)",
+        "destination": "/api/$1"
+      },
+      {
+        "source": "/public/(.*)",
+        "destination": "/public/$1"
+      }
+    ]
+  }
