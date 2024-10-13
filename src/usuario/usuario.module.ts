@@ -9,7 +9,8 @@ import { UsuarioService } from './usuario.service';
 @Module({
    imports:[TypeOrmModule.forFeature([Usuario,Drink])],
    controllers: [UsuarioController],
-   providers:[UsuarioService]
+   providers:[UsuarioService],
+   exports: [UsuarioService]
 })
 
 

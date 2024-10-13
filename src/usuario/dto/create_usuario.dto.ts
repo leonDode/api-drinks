@@ -19,7 +19,7 @@ export class CreateUsuarioDTO{
     @Matches(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, {
     message: 'Senha fraca',
   })
-   readonly senha: string;
+   readonly password: string;
 
 
     

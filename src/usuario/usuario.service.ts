@@ -18,16 +18,16 @@ export class UsuarioService {
 
 
     async create(createUserDto: CreateUsuarioDTO) {
-        const hashedPassword = await bcrypt.hash(createUserDto.senha, 10);
+        const hashedPassword = await bcrypt.hash(createUserDto.password, 10);
 
         const usuario = this.usuarioRepository.create({
             ...createUserDto,
-            senha: hashedPassword,
+            password: hashedPassword,
           });
 
           const createdUser = await this.usuarioRepository.save(usuario);
 
-          delete createdUser.senha;
+          delete createdUser.password;
 
           return createdUser
 

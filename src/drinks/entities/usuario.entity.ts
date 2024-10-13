@@ -15,7 +15,7 @@ export class Usuario {
 
 
     @Column()
-    senha: String
+    password: String
 
     @OneToMany(() => Drink, (drink) => drink.usuario)
     drinks: Drink[];
