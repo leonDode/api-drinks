@@ -7,6 +7,7 @@ import { Ingrediente } from './entities/ingredientes.entity';
 import { CreateDrinkDTO } from './dto/create_drink.dto';
 import { UpdateDrinkDTO } from './dto/update_drink.dto';
 import { UpdateIngredienteDTO } from './dto/update_ingrediente_dto';
+import { Usuario } from './entities/usuario.entity';
 
 @Injectable()
 export class DrinksService {
@@ -19,7 +20,10 @@ export class DrinksService {
         private readonly tagRepository: Repository<Tag>,
 
         @InjectRepository(Ingrediente)
-        private readonly ingredienteRepository: Repository<Ingrediente>
+        private readonly ingredienteRepository: Repository<Ingrediente>,
+
+        @InjectRepository(Usuario)
+        private readonly usuarioRepository: Repository<Usuario>
     ){}
 
    
@@ -254,6 +258,11 @@ export class DrinksService {
     }
 
 
+
+
+    async  findAllUsers(){
+      return this.usuarioRepository.find()
+  }
 
 
 

@@ -143,6 +143,14 @@ constructor(private readonly drinkService:DrinksService){
 
     }
 
+
+    @Get()
+    findAllUsers(){
+        return this.drinkService.findAllUsers()
+
+    }
+
+
     
 
 
