@@ -44,10 +44,9 @@ export class DrinksService {
 
 
 //ingredientes
-    async  findAllIngredientes(){
-      return this.ingredienteRepository.find()
-  }
-
+async  findAllIngredientes(){
+  return this.ingredienteRepository.find()
+}
    
   async  findIngredienteByCategoria(categoria:string){
     const ingrediente =  await this.ingredienteRepository.find({

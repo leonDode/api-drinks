@@ -1,4 +1,4 @@
-import { IsBoolean, IsOptional, IsString } from 'class-validator'
+import { IsBoolean, IsNumber, IsOptional, IsString } from 'class-validator'
 
 export class CreateDrinkDTO{
 
@@ -24,6 +24,10 @@ export class CreateDrinkDTO{
     
     @IsString({ each: true })
     readonly ingredientes: string[]
+
+     @IsNumber()
+    readonly usuarioId?: number
+
 
     
     @IsString()
@@ -51,6 +55,10 @@ export class CreateDrinkDTO{
  
     @IsBoolean()
     readonly salvo: boolean
+
+    
+    @IsBoolean()
+    readonly public: boolean | true
 
     @IsString()
     readonly img: String

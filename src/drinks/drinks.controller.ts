@@ -105,11 +105,12 @@ constructor(private readonly drinkService:DrinksService){
     
 // find all ingredientes 
  //   @ApiTags("ingredientes")
-    @Get('/ingredientes')
-    findAllIngrediente(){
-        return this.drinkService.findAllIngredientes()
+ @Get('/ingredientes')
+ findAllIngrediente(){
+     return this.drinkService.findAllIngredientes()
 
-    }
+ }
+
 
 
 // find ingrediente {categoria}
