@@ -1,29 +1,35 @@
-import { IsEmail,IsString, Matches, MaxLength, MinLength } from 'class-validator'
+import { ApiProperty } from '@nestjs/swagger';
+import {
+  IsEmail,
+  IsString,
+  Matches,
+  MaxLength,
+  MinLength
+} from 'class-validator';
 
-export class CreateUsuarioDTO{
-
-
-    
-    
-    
-    @IsString()
-    readonly nome: String
-
-    
-    @IsEmail()
-    readonly email: string
-
-    @IsString()
-    @MinLength(6)
-    @MaxLength(20)
-    @Matches(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, {
-    message: 'Senha fraca',
+export class CreateUsuarioDTO {
+  @ApiProperty({
+    example: 'leon'
   })
-   readonly password: string;
+  @IsString()
+  readonly nome: String;
 
+  @ApiProperty({
+    example: 'leon@gmail.com'
+  })
+  @IsEmail()
+  readonly email: string;
 
-    
-
-
- 
+  @ApiProperty({
+    example: 'Teste123-',
+    description:
+      'deve conter letras maiusculas, minusculas, numeros e simbulos, com um maximo de 20 caracteres e um minimo de 6'
+  })
+  @IsString()
+  @MinLength(6)
+  @MaxLength(20)
+  @Matches(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, {
+    message: 'Senha fraca'
+  })
+  readonly password: string;
 }
