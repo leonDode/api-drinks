@@ -69,7 +69,7 @@ export class CreateDrinkDTO {
   readonly medidas4?: string | null;
 
   @ApiProperty({
-    example: null
+    example: false
   })
   @IsBoolean()
   readonly salvo: boolean;
