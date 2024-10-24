@@ -1,23 +1,15 @@
-import { IsBoolean, IsString } from 'class-validator'
+import { IsBoolean, IsString } from 'class-validator';
 
+export class CreateIngredienteDTO {
+  @IsString()
+  readonly nome: String;
 
-export class CreateIngredienteDTO{
+  @IsString()
+  readonly img_ingrediente: String;
 
+  @IsString()
+  readonly categoria: String;
 
-
-    @IsString()
-    readonly nome: String
-
-    @IsString()
-    readonly img_ingrediente: String
-
-
-    @IsString()
-    readonly categoria: String
-
-
-    @IsBoolean()
-    readonly salvo: boolean
-
-
+  @IsBoolean()
+  readonly salvo: boolean;
 }

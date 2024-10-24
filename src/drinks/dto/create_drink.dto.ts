@@ -1,65 +1,50 @@
-import { IsBoolean, IsNumber, IsOptional, IsString } from 'class-validator'
+import { IsBoolean, IsInt, IsOptional, IsString } from 'class-validator';
 
-export class CreateDrinkDTO{
+export class CreateDrinkDTO {
+  @IsString()
+  readonly nome: String;
 
+  @IsString()
+  readonly descricao: string;
 
-    
-    
-    
-    @IsString()
-    readonly nome: String
+  @IsString()
+  readonly instrucoes: string;
 
-    
-    @IsString()
-    readonly descricao: string
+  @IsString({ each: true })
+  readonly tags: string[];
 
-    
-    @IsString()
-    readonly instrucoes: string
+  @IsString({ each: true })
+  readonly ingredientes: string[];
 
-   
-    @IsString({ each: true })
-    readonly tags: string[]
- 
-    
-    @IsString({ each: true })
-    readonly ingredientes: string[]
+  @IsString()
+  readonly medidas0?: string;
 
-     @IsNumber()
-    readonly usuarioId?: number
+  @IsOptional()
+  @IsString()
+  readonly medidas1?: string | null;
 
+  @IsOptional()
+  @IsString()
+  readonly medidas2?: string | null;
 
-    
-    @IsString()
-    readonly medidas0: string
+  @IsOptional()
+  @IsString()
+  readonly medidas3?: string | null;
 
-    
-    @IsOptional()
-    @IsString()
-    readonly medidas1: string | null
+  @IsOptional()
+  @IsString()
+  readonly medidas4?: string | null;
 
-    
-    @IsOptional()
-    @IsString()
-    readonly medidas2: string | null
+  @IsBoolean()
+  readonly salvo: boolean;
 
-    
-    @IsOptional()
-    @IsString()
-    readonly medidas3: string | null
+  @IsBoolean()
+  readonly publico: boolean;
 
-    
-    @IsOptional()
-    @IsString()
-    readonly medidas4: string | null
- 
-    @IsBoolean()
-    readonly salvo: boolean
+  @IsString()
+  readonly img: String;
 
-    
-    @IsBoolean()
-    readonly public: boolean | true
-
-    @IsString()
-    readonly img: String
+  @IsInt()
+  @IsOptional()
+  readonly usuarioId?: number;
 }
