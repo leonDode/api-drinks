@@ -240,4 +240,14 @@ export class DrinksService {
     }
     return this.ingredienteRepository.create({ nome });
   }
+
+  async findCreatedByUser(userid: number) {
+    const drink = await this.drinkRepository.find({
+      where: { usuario: { id: userid } }
+    });
+    if (!drink) {
+      throw new NotFoundException(`o drink com  nao existe`);
+    }
+    return drink;
+  }
 }

@@ -127,4 +127,10 @@ export class DrinksController {
   findTag(@Param('nome') nome: string) {
     return this.drinkService.findTag(nome);
   }
+
+  @ApiTags('Drinks')
+  @Get('/user/:id')
+  findCreatedByUser(@Param('id') id: number) {
+    return this.drinkService.findCreatedByUser(id);
+  }
 }
