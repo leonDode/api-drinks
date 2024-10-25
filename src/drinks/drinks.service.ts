@@ -8,6 +8,7 @@ import { CreateDrinkDTO } from './dto/create_drink.dto';
 import { UpdateDrinkDTO } from './dto/update_drink.dto';
 import { UpdateIngredienteDTO } from './dto/update_ingrediente_dto';
 import { Usuario } from './entities/usuario.entity';
+import { Avaliacao } from './entities/avaliacao.entity';
 
 @Injectable()
 export class DrinksService {
@@ -22,7 +23,10 @@ export class DrinksService {
     private readonly ingredienteRepository: Repository<Ingrediente>,
 
     @InjectRepository(Usuario)
-    private readonly usuarioRepository: Repository<Usuario>
+    private readonly usuarioRepository: Repository<Usuario>,
+
+    @InjectRepository(Avaliacao)
+    private readonly avaliacaoRepository: Repository<Avaliacao>
   ) {}
 
   //Tags
@@ -249,5 +253,19 @@ export class DrinksService {
       throw new NotFoundException(`o drink com  nao existe`);
     }
     return drink;
+  }
+
+  async drinkAvaliacaoMedia(drinkId: number) {
+    const avaliacoes = await this.avaliacaoRepository.find({
+      where: { drink: { id: drinkId } },
+      relations: ['usuario']
+    });
+
+    const media = avaliacoes.length
+      ? avaliacoes.reduce((sum, avaliacao) => sum + avaliacao.estrelas, 0) /
+        avaliacoes.length
+      : 0;
+
+    return media;
   }
 }

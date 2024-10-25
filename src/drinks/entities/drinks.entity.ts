@@ -4,11 +4,13 @@ import {
   JoinTable,
   ManyToMany,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn
 } from 'typeorm';
 import { Tag } from './tags.entity';
 import { Ingrediente } from './ingredientes.entity';
 import { Usuario } from './usuario.entity';
+import { Avaliacao } from './avaliacao.entity';
 
 @Entity('drinks')
 export class Drink {
@@ -62,4 +64,7 @@ export class Drink {
 
   @Column({ default: true })
   publico: boolean;
+
+  @OneToMany(() => Avaliacao, (avaliacao) => avaliacao.drink)
+  avaliacoes: Avaliacao[];
 }

@@ -21,13 +21,14 @@ export class DrinksController {
   // find all
   @ApiTags('Drinks')
   @Get()
-  findAll() {
-    return this.drinkService.findAll();
+  async findAll() {
+    return await this.drinkService.findAll();
   }
 
   // create
   @ApiTags('Drinks')
   @Post()
+  // eslint-disable-next-line prettier/prettier
   createDrink(@Body() createDrinkDTO: CreateDrinkDTO) {
     return this.drinkService.create(createDrinkDTO);
   }
@@ -132,5 +133,11 @@ export class DrinksController {
   @Get('/user/:id')
   findCreatedByUser(@Param('id') id: number) {
     return this.drinkService.findCreatedByUser(id);
+  }
+
+  @ApiTags('Avaliações')
+  @Get('media/:receitaId')
+  async obterMedia(@Param('drinkId') receitaId: number) {
+    return await this.drinkService.drinkAvaliacaoMedia(receitaId);
   }
 }

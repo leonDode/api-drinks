@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { Transform } from 'class-transformer';
 import { IsBoolean, IsInt, IsOptional, IsString } from 'class-validator';
 
 export class CreateDrinkDTO {
@@ -72,16 +73,15 @@ export class CreateDrinkDTO {
     example: false
   })
   @IsBoolean()
+  @Transform(({ value }) => value === 'true' || value === true)
   readonly salvo: boolean;
 
   @ApiProperty({
     example: true
   })
   @IsBoolean()
+  @Transform(({ value }) => value === 'true' || value === true)
   readonly publico: boolean;
-
-  @IsString()
-  readonly img: String;
 
   @ApiProperty({
     example: 1

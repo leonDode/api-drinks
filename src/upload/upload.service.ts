@@ -19,5 +19,11 @@ export class UploadService {
       .upload(file.originalname, file.buffer, {
         upsert: false
       });
+
+    const { data: publicData } = supabase.storage
+      .from('DrinkHub')
+      .getPublicUrl(file.originalname);
+
+    return publicData.publicUrl;
   }
 }

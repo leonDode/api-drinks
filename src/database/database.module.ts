@@ -6,6 +6,7 @@ import { Tag } from 'src/drinks/entities/tags.entity';
 import { Usuario } from 'src/drinks/entities/usuario.entity';
 import { DataSourceOptions } from 'typeorm';
 import * as dotenv from 'dotenv';
+import { Avaliacao } from 'src/drinks/entities/avaliacao.entity';
 
 dotenv.config();
 
@@ -16,7 +17,7 @@ export const dataSourceOptions: DataSourceOptions = {
   username: process.env.DB_USER,
   password: process.env.DB_PASS,
   database: process.env.DB_NAME,
-  entities: [Drink, Tag, Ingrediente, Usuario],
+  entities: [Drink, Tag, Ingrediente, Avaliacao, Usuario],
   synchronize: true
 };
 
