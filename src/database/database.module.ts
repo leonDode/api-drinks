@@ -5,16 +5,19 @@ import { Ingrediente } from 'src/drinks/entities/ingredientes.entity';
 import { Tag } from 'src/drinks/entities/tags.entity';
 import { Usuario } from 'src/drinks/entities/usuario.entity';
 import { DataSourceOptions } from 'typeorm';
+import * as dotenv from 'dotenv';
+
+dotenv.config();
 
 export const dataSourceOptions: DataSourceOptions = {
   type: 'postgres',
-  host: 'viaduct.proxy.rlwy.net',
-  port: 27696,
-  username: 'postgres',
-  password: 'rykdmIMfaVgDDPrYpeNYOSCXNxCDVCLf',
-  database: 'railway',
+  host: process.env.DB_HOST,
+  port: parseInt(process.env.DB_PORT, 10),
+  username: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME,
   entities: [Drink, Tag, Ingrediente, Usuario],
-  synchronize: false,
+  synchronize: true
 };
 
 @Module({
@@ -22,10 +25,10 @@ export const dataSourceOptions: DataSourceOptions = {
     TypeOrmModule.forRootAsync({
       useFactory: () => {
         return {
-          ...dataSourceOptions,
+          ...dataSourceOptions
         };
-      },
-    }),
-  ],
+      }
+    })
+  ]
 })
 export class DatabaseModule {}
