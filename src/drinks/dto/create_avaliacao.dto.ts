@@ -22,5 +22,5 @@ export class CreateAvaliacaoDTO {
   @IsInt()
   @Min(1)
   @Max(5)
-  estrelas: number;
+  nota: number;
 }

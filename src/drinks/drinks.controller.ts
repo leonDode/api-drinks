@@ -13,6 +13,7 @@ import { CreateDrinkDTO } from './dto/create_drink.dto';
 import { UpdateDrinkDTO } from './dto/update_drink.dto';
 import { UpdateIngredienteDTO } from './dto/update_ingrediente_dto';
 import { ApiTags } from '@nestjs/swagger';
+import { CreateAvaliacaoDTO } from './dto/create_avaliacao.dto';
 
 @Controller('drinks')
 export class DrinksController {
@@ -139,5 +140,11 @@ export class DrinksController {
   @Get('/media/:drinkId')
   async obterMedia(@Param('drinkId') receitaId: number) {
     return await this.drinkService.drinkAvaliacaoMedia(receitaId);
+  }
+
+  @ApiTags('Avaliações')
+  @Post('/avaliacoes')
+  async createAvaliacao(@Body() createAvaliacaoDto: CreateAvaliacaoDTO) {
+    return this.drinkService.createAvalaicao(createAvaliacaoDto);
   }
 }

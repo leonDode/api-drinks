@@ -9,6 +9,7 @@ import { UpdateDrinkDTO } from './dto/update_drink.dto';
 import { UpdateIngredienteDTO } from './dto/update_ingrediente_dto';
 import { Usuario } from './entities/usuario.entity';
 import { Avaliacao } from './entities/avaliacao.entity';
+import { CreateAvaliacaoDTO } from './dto/create_avaliacao.dto';
 
 @Injectable()
 export class DrinksService {
@@ -255,6 +256,36 @@ export class DrinksService {
     return drink;
   }
 
+  async createAvalaicao(createAvaliacaoDTO: CreateAvaliacaoDTO) {
+    const { usuarioId, drinkId, nota } = createAvaliacaoDTO;
+    const usuario = await this.usuarioRepository.findOne({
+      where: { id: usuarioId }
+    });
+    const drink = await this.drinkRepository.findOne({
+      where: { id: drinkId }
+    });
+
+    if (!usuario || !drink) {
+      throw new Error('Usuário ou Drink não encontrados');
+    }
+
+    let avaliacao = await this.avaliacaoRepository.findOne({
+      where: { usuario: { id: usuarioId }, drink: { id: drinkId } }
+    });
+
+    if (avaliacao) {
+      avaliacao.nota = nota;
+    } else {
+      avaliacao = this.avaliacaoRepository.create({
+        usuario,
+        drink,
+        nota
+      });
+    }
+
+    return this.avaliacaoRepository.save(avaliacao);
+  }
+
   async drinkAvaliacaoMedia(drinkId: number) {
     const avaliacoes = await this.avaliacaoRepository.find({
       where: { drink: { id: drinkId } },
@@ -264,7 +295,7 @@ export class DrinksService {
 
     const media = avaliacoes.length
       ? Math.round(
-          (avaliacoes.reduce((sum, avaliacao) => sum + avaliacao.estrelas, 0) /
+          (avaliacoes.reduce((sum, avaliacao) => sum + avaliacao.nota, 0) /
             total) *
             10
         ) / 10
