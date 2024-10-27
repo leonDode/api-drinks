@@ -26,7 +26,7 @@ export class Drink {
   @Column({ nullable: true })
   instrucoes: string;
 
-  @Column()
+  @Column({ nullable: true })
   img: String;
 
   @JoinTable()
