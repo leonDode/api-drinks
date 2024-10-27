@@ -260,12 +260,15 @@ export class DrinksService {
       where: { drink: { id: drinkId } },
       relations: ['usuario']
     });
+    const total = avaliacoes.length;
 
     const media = avaliacoes.length
-      ? avaliacoes.reduce((sum, avaliacao) => sum + avaliacao.estrelas, 0) /
-        avaliacoes.length
+      ? Math.round(
+          (avaliacoes.reduce((sum, avaliacao) => sum + avaliacao.estrelas, 0) /
+            total) *
+            10
+        ) / 10
       : 0;
-
-    return media;
+    return { total, media };
   }
 }

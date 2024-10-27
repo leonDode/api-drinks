@@ -29,18 +29,18 @@ export class DrinksController {
   @ApiTags('Drinks')
   @Post()
   // eslint-disable-next-line prettier/prettier
-  createDrink(@Body() createDrinkDTO: CreateDrinkDTO) {
-    return this.drinkService.create(createDrinkDTO);
+  async createDrink(@Body() createDrinkDTO: CreateDrinkDTO) {
+    return await this.drinkService.create(createDrinkDTO);
   }
 
   // update
   @ApiTags('Drinks')
   @Put(':id')
-  updateDrinks(
+  async updateDrinks(
     @Param('id') id: number,
     @Body() updateDrinkDTO: UpdateDrinkDTO
   ) {
-    return this.drinkService.update(id, updateDrinkDTO);
+    return await this.drinkService.update(id, updateDrinkDTO);
   }
 
   // delete
@@ -136,7 +136,7 @@ export class DrinksController {
   }
 
   @ApiTags('Avaliações')
-  @Get('media/:receitaId')
+  @Get('/media/:drinkId')
   async obterMedia(@Param('drinkId') receitaId: number) {
     return await this.drinkService.drinkAvaliacaoMedia(receitaId);
   }
