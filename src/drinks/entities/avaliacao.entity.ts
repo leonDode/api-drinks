@@ -18,6 +18,9 @@ export class Avaliacao {
   @Column({ type: 'int' })
   nota: number;
 
+  @Column({ nullable: true })
+  comentario: string;
+
   @ManyToOne(() => Drink, (drink) => drink.avaliacoes)
   drink: Drink;
 

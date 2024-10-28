@@ -138,13 +138,22 @@ export class DrinksController {
 
   @ApiTags('Avaliações')
   @Get('/media/:drinkId')
-  async obterMedia(@Param('drinkId') receitaId: number) {
-    return await this.drinkService.drinkAvaliacaoMedia(receitaId);
+  async obterMedia(@Param('drinkId') drinkId: number) {
+    return await this.drinkService.drinkAvaliacaoMedia(drinkId);
   }
 
   @ApiTags('Avaliações')
   @Post('/avaliacoes')
   async createAvaliacao(@Body() createAvaliacaoDto: CreateAvaliacaoDTO) {
     return this.drinkService.createAvalaicao(createAvaliacaoDto);
+  }
+
+  @ApiTags('Avaliações')
+  @Get('/avaliacoes/:usuarioId/:drinkId')
+  async findUserAvaliacao(
+    @Param('usuarioId') usuarioId: number,
+    @Param('drinkId') drinkid: number
+  ) {
+    return this.drinkService.findUserAval(usuarioId, drinkid);
   }
 }

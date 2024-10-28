@@ -302,4 +302,12 @@ export class DrinksService {
       : 0;
     return { total, media };
   }
+
+  async findUserAval(usuarioId: number, drinkId: number) {
+    const avaliacao = await this.avaliacaoRepository.find({
+      where: { drink: { id: drinkId }, usuario: { id: usuarioId } }
+    });
+
+    return avaliacao;
+  }
 }
