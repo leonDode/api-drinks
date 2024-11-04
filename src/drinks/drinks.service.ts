@@ -257,7 +257,7 @@ export class DrinksService {
   }
 
   async createAvalaicao(createAvaliacaoDTO: CreateAvaliacaoDTO) {
-    const { usuarioId, drinkId, nota } = createAvaliacaoDTO;
+    const { usuarioId, drinkId, nota, comentario } = createAvaliacaoDTO;
     const usuario = await this.usuarioRepository.findOne({
       where: { id: usuarioId }
     });
@@ -275,11 +275,13 @@ export class DrinksService {
 
     if (avaliacao) {
       avaliacao.nota = nota;
+      avaliacao.comentario = comentario;
     } else {
       avaliacao = this.avaliacaoRepository.create({
         usuario,
         drink,
-        nota
+        nota,
+        comentario
       });
     }
 
