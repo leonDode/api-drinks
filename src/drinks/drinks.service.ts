@@ -312,4 +312,20 @@ export class DrinksService {
 
     return avaliacao;
   }
+
+  async findallAvalForSelectDrink(drinkId: number) {
+    console.log(drinkId);
+    const avaliacao = await this.avaliacaoRepository.find({
+      where: { drink: { id: drinkId } },
+      relations: ['usuario'] // Relacionamento com o usuário
+    });
+
+    return avaliacao.map((avaliacao) => ({
+      id: avaliacao.id,
+      comentario: avaliacao.comentario,
+      nota: avaliacao.nota,
+      drink: avaliacao.drink,
+      nomeUsuario: avaliacao.usuario ? avaliacao.usuario.nome : null // Relaciona apenas o nome do usuário
+    }));
+  }
 }

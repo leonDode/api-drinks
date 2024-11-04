@@ -156,4 +156,10 @@ export class DrinksController {
   ) {
     return this.drinkService.findUserAval(usuarioId, drinkid);
   }
+
+  @ApiTags('Avaliações')
+  @Get('/avaliacoes/:drinkId')
+  async findAllAvalForSelectDrink(@Param('drinkId') drinkid: number) {
+    return this.drinkService.findallAvalForSelectDrink(drinkid);
+  }
 }
