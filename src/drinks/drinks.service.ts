@@ -92,7 +92,7 @@ export class DrinksService {
   async findOne(id: number) {
     const drink = await this.drinkRepository.findOne({
       where: { id },
-      relations: ['tags', 'ingredientes']
+      relations: ['tags', 'ingredientes', 'usuario']
     });
     if (!drink) {
       throw new NotFoundException(`o drink com ID ${id} nao existe`);
