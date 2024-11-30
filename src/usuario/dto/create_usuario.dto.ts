@@ -1,7 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger';
 import {
   IsEmail,
+  IsOptional,
   IsString,
+  IsUrl,
   Matches,
   MaxLength,
   MinLength
@@ -19,6 +21,11 @@ export class CreateUsuarioDTO {
   })
   @IsEmail()
   readonly email: string;
+
+  @IsString()
+  @IsUrl()
+  @IsOptional()
+  readonly avatarUrl: string;
 
   @ApiProperty({
     example: 'Teste123-',

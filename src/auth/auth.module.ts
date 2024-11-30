@@ -4,15 +4,19 @@ import { AuthService } from './auth.service';
 import { UsuarioModule } from 'src/usuario/usuario.module';
 import { LocalStrategy } from './strategies/local.strategy';
 import { JwtModule } from '@nestjs/jwt';
+import { ConfigModule } from '@nestjs/config';
+import googleOauthConfig from './config/google-oauth.config';
 
 @Module({
-  imports: [ UsuarioModule,JwtModule.register({
+  imports: [
+    UsuarioModule,
+    JwtModule.register({
       secret: 'teste',
-      signOptions: {expiresIn:'30d'}
-  })],
+      signOptions: { expiresIn: '30d' }
+    }),
+    ConfigModule.forFeature(googleOauthConfig)
+  ],
   controllers: [AuthController],
-  providers: [AuthService,LocalStrategy]
+  providers: [AuthService, LocalStrategy]
 })
 export class AuthModule {}
-
-

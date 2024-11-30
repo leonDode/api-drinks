@@ -5,6 +5,7 @@ import { Usuario } from 'src/drinks/entities/usuario.entity';
 import { UserPayload } from './models/UserPayload';
 import { JwtService } from '@nestjs/jwt';
 import { UserToken } from './models/UserToken';
+import { CreateUsuarioDTO } from 'src/usuario/dto/create_usuario.dto';
 
 @Injectable()
 export class AuthService {
@@ -42,5 +43,11 @@ export class AuthService {
       acess_token: jwtToken,
       user_id: user.id
     };
+  }
+
+  async validateGoogleUser(googleUser: CreateUsuarioDTO) {
+    const user = await this.usuarioService.findByEmail(googleUser.email);
+    if (user) return user;
+    return await this.usuarioService.create(googleUser);
   }
 }

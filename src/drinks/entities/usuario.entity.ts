@@ -13,6 +13,9 @@ export class Usuario {
   @Column()
   email: String;
 
+  @Column({ nullable: true })
+  avatarUrl: string;
+
   @Column()
   password: String;
 
