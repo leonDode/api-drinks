@@ -4,6 +4,7 @@ import { Usuario } from 'src/drinks/entities/usuario.entity';
 import { Repository } from 'typeorm';
 import { CreateUsuarioDTO } from './dto/create_usuario.dto';
 import * as bcrypt from 'bcrypt';
+import { UpdateUsuarioDTO } from './dto/update_usuario.dto';
 
 @Injectable()
 export class UsuarioService {
@@ -25,6 +26,19 @@ export class UsuarioService {
     delete createdUser.password;
 
     return createdUser;
+  }
+
+  async update(id: number, updateUsuarioDto: UpdateUsuarioDTO) {
+    const usuario = await this.usuarioRepository.preload({
+      id,
+      ...updateUsuarioDto
+    });
+
+    if (!usuario) {
+      throw new NotFoundException(`O usuário com ID ${id} não existe`);
+    }
+
+    return this.usuarioRepository.save(usuario);
   }
 
   async findOne(id: number) {
