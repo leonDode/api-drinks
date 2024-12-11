@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Transform } from 'class-transformer';
-import { IsBoolean, IsInt, IsOptional, IsString } from 'class-validator';
+import { IsBoolean, IsInt, IsOptional, IsString, IsUrl } from 'class-validator';
 
 export class CreateDrinkDTO {
   @ApiProperty({
@@ -89,4 +89,11 @@ export class CreateDrinkDTO {
   @IsInt()
   @IsOptional()
   readonly usuarioId?: number;
+
+  @ApiProperty({
+    example: 'https://supabase-url/DrinkHub/images/example.jpg'
+  })
+  @IsOptional()
+  @IsUrl()
+  readonly img?: string;
 }
